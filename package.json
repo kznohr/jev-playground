@@ -1,0 +1,16 @@
+{
+  "name": "jev-playground",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "start": "node src/index.js",
+    "check": "node --check src/index.js && node --check src/semantic-regression.js",
+    "semantic:check": "node src/semantic-regression.js",
+    "semantic:check:offline": "node src/semantic-regression.js --offline"
+  },
+  "dependencies": {
+    "@typesafe-ai/sdk": "latest",
+    "cheerio": "latest"
+  }
+}

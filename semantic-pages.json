@@ -1,0 +1,19 @@
+{
+  "pages": [
+    {
+      "id": "focusflow-product-page",
+      "file": "fixtures/product-page.html",
+      "expect": {
+        "hasMain": true,
+        "pageKind": "product",
+        "primaryCtaHref": "/trial",
+        "minSemanticClarity": 1,
+        "minConfidence": {
+          "pageKind": 0.6,
+          "primaryCta": 0.6,
+          "semanticClarity": 0.6
+        }
+      }
+    }
+  ]
+}

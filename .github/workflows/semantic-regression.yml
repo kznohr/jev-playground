@@ -1,0 +1,29 @@
+name: Semantic regression
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+jobs:
+  check-pages:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+      - run: npm ci
+      - name: Check deterministic HTML structure
+        run: npm run semantic:check:offline
+      - name: Check semantic expectations with Jev
+        env:
+          TYPESAFE_API_KEY: ${{ secrets.TYPESAFE_API_KEY }}
+        run: |
+          if [ -n "$TYPESAFE_API_KEY" ]; then
+            npm run semantic:check
+          else
+            echo "TYPESAFE_API_KEY is not configured; skipping live Jev evaluation."
+          fi
